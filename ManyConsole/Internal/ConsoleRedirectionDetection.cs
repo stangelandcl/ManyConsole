@@ -21,23 +21,26 @@ namespace ManyConsole.Internal
     {
         public bool IsOutputRedirected()
         {
-            return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stdout));
+			return false;
+            //return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stdout));
         }
         public bool IsInputRedirected()
         {
-            return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stdin));
+			return false;
+            //return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stdin));
         }
         public bool IsErrorRedirected()
         {
-            return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stderr));
+			return false;
+            //return FileType.Char != GetFileType(GetStdHandle(StdHandle.Stderr));
         }
 
         // P/Invoke:
         private enum FileType { Unknown, Disk, Char, Pipe };
         private enum StdHandle { Stdin = -10, Stdout = -11, Stderr = -12 };
-        [DllImport("kernel32.dll")]
-        private static extern FileType GetFileType(IntPtr hdl);
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr GetStdHandle(StdHandle std);
+//        [DllImport("kernel32.dll")]
+//        private static extern FileType GetFileType(IntPtr hdl);
+//        [DllImport("kernel32.dll")]
+//        private static extern IntPtr GetStdHandle(StdHandle std);
     }
 }
